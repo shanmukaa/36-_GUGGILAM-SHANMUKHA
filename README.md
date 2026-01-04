@@ -1,7 +1,5 @@
-Clinical Trial Eligibility Matching System
+This project matches a sample patient profile to relevant COVID-19 clinical trials using data from ClinicalTrials.gov. Trial metadata is loaded from a CSV file, while detailed inclusion and exclusion criteria are extracted directly from ClinicalTrials.gov XML files.
 
-This project matches a patient profile to relevant COVID-19 clinical trials using data from ClinicalTrials.gov. Trial metadata is read from a CSV file, while detailed inclusion and exclusion criteria are extracted from ClinicalTrials.gov XML files.
+The system uses sentence-transformer embeddings and a FAISS vector store to retrieve the top-K most relevant trials based on semantic similarity to the patient profile. Eligibility decisions are then determined using deterministic logic that evaluates the patient profile against the extracted inclusion and exclusion criteria, ensuring transparent and reproducible results.
 
-Semantic search is performed using sentence-transformer embeddings and a FAISS vector store to retrieve the most relevant trials based on inclusion criteria. An open-source HuggingFace language model (FLAN-T5) integrated through LangChain is used to reason over inclusion and exclusion criteria and determine patient eligibility.
-
-The system produces Top-K trial IDs along with a clear eligibility decision (ELIGIBLE or NOT ELIGIBLE) and a short justification. No model training or fine-tuning is performed; the approach follows a retrieval-augmented reasoning pipeline using pre-trained models.
+The final output consists of trial IDs along with an eligibility decision (ELIGIBLE or NOT ELIGIBLE) and clear justification derived from the trial criteria. No model training or external LLM APIs are used; the approach follows a retrieval-based and rule-driven eligibility matching pipeline.
